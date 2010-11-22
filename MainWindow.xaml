@@ -18,10 +18,20 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
             <Label Grid.Row="0">Source d'apprentissage :</Label>
-            <ListView Grid.Row="1" ItemsSource="{Binding Sources}"/>
-            
+            <ListView Grid.Row="1" ItemsSource="{Binding Sources}">
+                <ListView.View>
+                    <GridView>
+                        <!--<GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="Control">
+                                <Setter Property="Height" Value="0"/>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>-->
+                        <GridViewColumn Width="120" Header="Fichier" DisplayMemberBinding="{Binding FileName}" />
+                        <GridViewColumn Width="120" Header="Nombre de mots" DisplayMemberBinding="{Binding Words.Count}" />
+                    </GridView>
+                </ListView.View>              
+            </ListView>            
             <Label Grid.Row="2">Mes mots :</Label>
             <ListView Grid.Row="3" ItemsSource="{Binding UserWords}"/>
         </Grid>

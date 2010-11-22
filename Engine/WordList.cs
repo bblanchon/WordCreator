@@ -22,6 +22,8 @@ namespace WordGenerator.Engine
 
         public string FilePath { get { return m_filePath; } }
 
+        public string FileName { get { return Path.GetFileName(m_filePath); } }
+
         #endregion
 
         #region Words

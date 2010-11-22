@@ -10,7 +10,7 @@ namespace WordGenerator
 {
     class MainWindowViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<WordList> Sources;
+        public ObservableCollection<WordList> Sources { get; set; }
 
         public WordList UserWords;
 
