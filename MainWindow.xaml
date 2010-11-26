@@ -3,6 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:engine="clr-namespace:WordGenerator.Engine"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate x:Key="ProbabilityCellTemplate">
+            <ProgressBar Value="{Binding ProbabilityPercent, Mode=OneWay}" Width="30" Height="5" />
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -11,6 +16,18 @@
         <DockPanel Grid.Column="0">
             <TextBox DockPanel.Dock="Top" Text="{Binding UserEntry, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
             <ListView ItemsSource="{Binding SuggestedWords}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="Control">
+                                <Setter Property="Height" Value="0"/>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn Width="120" Header="Mot" DisplayMemberBinding="{Binding Word}" />
+                        <GridViewColumn Width="50" Header="Correspondance" CellTemplate="{StaticResource ProbabilityCellTemplate}"/>
+                        <GridViewColumn Width="20" Header="Dans les sources" DisplayMemberBinding="{Binding IsInSources}" />
+                    </GridView>
+                </ListView.View>
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type engine:SuggestedWord}">
                         <StackPanel Orientation="Horizontal">
