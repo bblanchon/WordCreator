@@ -78,7 +78,7 @@ namespace WordGenerator
 
         void OnUserEntryChanged(object sender, EventArgs e)
         {
-            var words = m_engine.Suggest(m_data.UserEntry).Where(x => x.Length > 2).Take(500);
+            var words = m_engine.Suggest(m_data.UserEntry).Where(x => x.Word.Length > 2).Take(500);
 
             m_data.SuggestedWords = words;
         }

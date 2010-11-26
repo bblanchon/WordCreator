@@ -70,6 +70,7 @@
     <Compile Include="Engine\LengthCountCollection.cs" />
     <Compile Include="Engine\MarkovHash.cs" />
     <Compile Include="Engine\StringProbability.cs" />
+    <Compile Include="Engine\SuggestedWord.cs" />
     <Compile Include="Engine\WordList.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

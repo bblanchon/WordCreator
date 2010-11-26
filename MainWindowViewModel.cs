@@ -16,9 +16,9 @@ namespace WordGenerator
 
         #region SuggestedWords
 
-        private IEnumerable<string> m_suggestedWords;
+        private IEnumerable<SuggestedWord> m_suggestedWords;
 
-        public IEnumerable<string> SuggestedWords
+        public IEnumerable<SuggestedWord> SuggestedWords
         {
             set { m_suggestedWords = value; RaisePropertyChanged("SuggestedWords"); }
             get { return m_suggestedWords; }

@@ -9,6 +9,7 @@ namespace WordGenerator.Engine
     class Generator
     {
         MarkovHash m_markov = new MarkovHash();
+        List<WordList> m_sources = new List<WordList>();
         LengthCountCollection m_lengths = new LengthCountCollection();
 
         private static char EOF = (char)0;
@@ -45,6 +46,7 @@ namespace WordGenerator.Engine
         public void Learn(WordList list)
         {
             foreach (var word in list.Words) Learn(word);
+            m_sources.Add (list);
         }
 
         private IEnumerable<CharProbability> SuggestNextChar(string word)
@@ -90,9 +92,14 @@ namespace WordGenerator.Engine
             }
         }
 
-        public IEnumerable<string> Suggest(string word, double minProbability=0.05)
+        public IEnumerable<SuggestedWord> Suggest(string word, double minProbability = 0.05)
         {
-            return Suggest(word.ToLower(), 1, minProbability).OrderByDescending(x=>x.Probability).Select(x => x.String);
+            var wordProbabilities = Suggest(word.ToLower(), 1, minProbability).OrderByDescending(x => x.Probability);
+
+            foreach (var wp in wordProbabilities)
+            {
+                yield return new SuggestedWord(wp.String, wp.Probability, m_sources.Any(src=>src.Words.Contains(wp.String)));
+            }
         }
     }
 }
