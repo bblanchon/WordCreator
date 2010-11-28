@@ -32,5 +32,13 @@ namespace WordGenerator
         }
 
         MainWindowViewModel m_data;
+
+        private void ListView_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            var list = (ListView)sender;
+
+            removeSourceMenuItem.Visibility = list.SelectedItems.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+            removeSourceMenuItem.CommandParameter = list.SelectedItems.Cast<WordList>().ToArray();
+        }
     }
 }

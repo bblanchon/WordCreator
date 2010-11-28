@@ -72,7 +72,7 @@
                 <Image Source="/WordGenerator;component/Images/book.png" />
                 <Label Grid.Row="0">Source d'apprentissage :</Label>
             </StackPanel>
-            <ListView Grid.Row="1" ItemsSource="{Binding Sources}">
+            <ListView Grid.Row="1" ItemsSource="{Binding Sources}" ContextMenuOpening="ListView_ContextMenuOpening">
                 <ListView.View>
                     <GridView>
                         <!--<GridView.ColumnHeaderContainerStyle>
@@ -87,6 +87,7 @@
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Ajouter une source..." Command="{Binding AddSourceCommand}" />
+                        <MenuItem Header="Enlever la source..." Command="{Binding RemoveSourceCommand}" x:Name="removeSourceMenuItem"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>            

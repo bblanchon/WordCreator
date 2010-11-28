@@ -10,13 +10,13 @@ namespace WordGenerator.Engine
         Dictionary<char, CharCount> m_hash = new Dictionary<char, CharCount>();
         int m_totalCount = 0;
 
-        public void Add(char c)
+        public void Add(char c, int increment)
         {
             if (!m_hash.ContainsKey(c))
                 m_hash.Add(c, new CharCount(c));
 
-            m_hash[c].Count++;
-            m_totalCount++;
+            m_hash[c].Count += increment;
+            m_totalCount += increment;
         }
 
         public IEnumerator<CharCount> GetEnumerator()

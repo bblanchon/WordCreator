@@ -17,15 +17,15 @@ namespace WordGenerator
         public MainWindowViewModel()
         {
             AddSourceCommand = new RelayCommand(AddSourceCmdExecuted);
+            RemoveSourceCommand = new RelayCommand(RemoveSourceCmdExecuted);
 
             Sources = new ObservableCollection<WordList>();
             Sources.CollectionChanged += OnSourcesCollectionChanged;
 
             FindFiles();
 
-            m_engine.Learn(UserWords);
+            m_engine.Learn(UserWords.Words);
         }
-
 
         #region Sources
 
@@ -36,10 +36,22 @@ namespace WordGenerator
             if (e.NewItems != null)
             {
                 foreach (WordList list in e.NewItems)
-                {
-                    m_engine.Learn(list);
-                }
+                    m_engine.Learn(list.Words);
             }
+
+            if (e.OldItems != null)
+            {                
+                foreach (WordList list in e.OldItems)
+                    m_engine.Unlearn(list.Words);
+            }
+
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
+                m_engine.Clear();
+            }
+
+            if (!string.IsNullOrEmpty(UserEntry))
+                UpdateSuggestedWords();
         }
 
         #endregion
@@ -54,6 +66,14 @@ namespace WordGenerator
         {
             set { m_suggestedWords = value; RaisePropertyChanged("SuggestedWords"); }
             get { return m_suggestedWords; }
+        }
+
+        private void UpdateSuggestedWords()
+        {
+            var words = m_engine.Suggest(UserEntry).Where(x => x.String.Length > 2).Take(300);
+
+            SuggestedWords = words.Select(wp => new SuggestedWord(wp.String, wp.Probability,
+                Sources.Any(src => src.Words.Contains(wp.String))));
         }
 
         #endregion
@@ -76,9 +96,7 @@ namespace WordGenerator
 
         void OnUserEntryChanged()
         {
-            var words = m_engine.Suggest(UserEntry).Where(x => x.Word.Length > 2).Take(500);
-
-            SuggestedWords = words;
+            UpdateSuggestedWords();
         }
 
         #endregion
@@ -86,6 +104,8 @@ namespace WordGenerator
         #region Commands
 
         public ICommand AddSourceCommand { private set; get; }
+
+        public ICommand RemoveSourceCommand { private set; get; }
 
         private void AddSourceCmdExecuted(object parameter)
         {
@@ -99,8 +119,19 @@ namespace WordGenerator
                 {
                     var dstFile = Path.Combine(SourceFilesFolder, Path.GetFileName(file));
                     File.Copy(file, dstFile);
-                    Sources.Add(new WordList(file));
+                    Sources.Add(new WordList(dstFile));
                 }
+            }
+        }
+
+        private void RemoveSourceCmdExecuted(object parameter)
+        {
+            var selection = parameter as IEnumerable<WordList>;
+
+            foreach( WordList list in selection )
+            {
+                File.Delete(list.FilePath);
+                Sources.Remove (list);
             }
         }
 

@@ -9,17 +9,17 @@ namespace WordGenerator.Engine
     {
         Dictionary<string, CharCountCollection> m_hash = new Dictionary<string, CharCountCollection>();
 
-        public void Add(string substring, char nextChar)
+        public void Add(string substring, char nextChar, int increment)
         {
             if (!m_hash.ContainsKey(substring))
                 m_hash.Add(substring, new CharCountCollection());
 
-            m_hash[substring].Add(nextChar);
+            m_hash[substring].Add(nextChar, increment);
         }
 
         public bool ContainsKey(string s)
         {
-            return m_hash.ContainsKey(s);
+            return m_hash.ContainsKey(s) ;
         }
 
         public CharCountCollection this[string s]
@@ -30,5 +30,10 @@ namespace WordGenerator.Engine
             }
         }
 
+
+        public void Clear()
+        {
+            m_hash.Clear();
+        }
     }
 }

@@ -9,44 +9,53 @@ namespace WordGenerator.Engine
     class Generator
     {
         MarkovHash m_markov = new MarkovHash();
-        List<WordList> m_sources = new List<WordList>();
         LengthCountCollection m_lengths = new LengthCountCollection();
 
         private static char EOF = (char)0;
         
-        private void Learn(string word, int order)
+        private void Learn(string word, int order, int increment)
         {
             for (int i = 1; i < order; i++)
             {
                 var substring = word.Substring(0, i);
-                m_markov.Add(substring, word[i]);
+                m_markov.Add(substring, word[i], increment);
             }
 
             for (int i = order; i < word.Length; i++)
             {
                 var substring = word.Substring(i - order, order);
-                m_markov.Add(substring, word[i]);
+                m_markov.Add(substring, word[i], increment); ;
             }
 
             if (word.Length >= order)
             {
                 var substring = word.Substring(word.Length - order, order);
-                m_markov.Add(substring, EOF);
+                m_markov.Add(substring, EOF, increment); ;
             }
         }
 
         int orderMax = 2;
 
-        private void Learn(string word)
+        private void Learn(string word, int increment)
         {
-            m_lengths.Add(word.Length);
-            Learn(word, Math.Min(orderMax, word.Length));
+            m_lengths.Add(word.Length, increment);
+            Learn(word, Math.Min(orderMax, word.Length), increment);
         }
 
-        public void Learn(WordList list)
+        public void Learn(IEnumerable<string> list)
         {
-            foreach (var word in list.Words) Learn(word);
-            m_sources.Add (list);
+            foreach (var word in list) Learn(word, +1);
+        }
+
+        public void Unlearn(IEnumerable<string> list)
+        {
+            foreach (var word in list) Learn(word, -1);
+        }
+
+        public void Clear()
+        {
+            m_lengths.Clear();
+            m_markov.Clear();
         }
 
         private IEnumerable<CharProbability> SuggestNextChar(string word)
@@ -92,14 +101,9 @@ namespace WordGenerator.Engine
             }
         }
 
-        public IEnumerable<SuggestedWord> Suggest(string word, double minProbability = 0.05)
+        public IEnumerable<StringProbability> Suggest(string word, double minProbability = 0.05)
         {
-            var wordProbabilities = Suggest(word.ToLower(), 1, minProbability).OrderByDescending(x => x.Probability);
-
-            foreach (var wp in wordProbabilities)
-            {
-                yield return new SuggestedWord(wp.String, wp.Probability, m_sources.Any(src=>src.Words.Contains(wp.String)));
-            }
+            return Suggest(word.ToLower(), 1, minProbability).OrderByDescending(x => x.Probability);
         }
     }
 }
