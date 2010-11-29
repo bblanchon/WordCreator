@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Collections.ObjectModel;
 
-namespace WordGenerator.Engine
+namespace WordGenerator
 {
     class WordList
     {

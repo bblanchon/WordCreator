@@ -56,6 +56,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="RelayCommand.cs" />
+    <Page Include="L10n\Resources.fr-FR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="L10n\Resources.en-US.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,8 +79,8 @@
     <Compile Include="Engine\LengthCountCollection.cs" />
     <Compile Include="Engine\MarkovHash.cs" />
     <Compile Include="Engine\StringProbability.cs" />
-    <Compile Include="Engine\SuggestedWord.cs" />
-    <Compile Include="Engine\WordList.cs" />
+    <Compile Include="SuggestedWord.cs" />
+    <Compile Include="WordList.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
