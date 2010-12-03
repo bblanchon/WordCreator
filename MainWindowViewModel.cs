@@ -12,7 +12,7 @@ using System.Collections.Specialized;
 
 namespace WordGenerator
 {
-    class MainWindowViewModel : INotifyPropertyChanged
+    class MainWindowViewModel : INotifyPropertyChanged, IDisposable
     {
         public MainWindowViewModel()
         {
@@ -28,6 +28,11 @@ namespace WordGenerator
 
             UserWords = new WordList(UserWordsFile);
             m_engine.Learn(UserWords.Words);
+        }
+
+        public void Dispose()
+        {
+            UserWords.Save();
         }
 
         #region Sources

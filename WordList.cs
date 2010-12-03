@@ -80,5 +80,14 @@ namespace WordGenerator
         }
 
         #endregion
+
+        public void Save()
+        {
+            using (var writer = File.CreateText(m_filePath))
+            {
+                foreach (var word in m_words)
+                    writer.WriteLine(word);
+            }
+        }
     }
 }

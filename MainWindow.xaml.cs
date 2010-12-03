@@ -31,6 +31,14 @@ namespace WordGenerator
             this.DataContext = m_data;
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            m_data.Dispose();
+            this.DataContext = m_data = null ;
+        }
+
         MainWindowViewModel m_data;
 
         private void ListView_ContextMenuOpening(object sender, ContextMenuEventArgs e)
