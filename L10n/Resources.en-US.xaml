@@ -1,5 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <sys:String x:Key="ApplicationTitle">Word creator</sys:String>    
+    <sys:String x:Key="L10n.ApplicationTitle">Word creator</sys:String>
+    <sys:String x:Key="L10n.FileName">File name</sys:String>
+    <sys:String x:Key="L10n.WordCount">Word count</sys:String>
+    <sys:String x:Key="L10n.LearningSources">Learning sources</sys:String>
 </ResourceDictionary>

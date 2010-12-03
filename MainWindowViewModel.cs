@@ -36,20 +36,39 @@ namespace WordGenerator
             if (e.NewItems != null)
             {
                 foreach (WordList list in e.NewItems)
-                    m_engine.Learn(list.Words);
+                {
+                    if (list.IsEnabled) LearnSource(list);
+                    list.Enabled += LearnSource;
+                    list.Disabled += UnlearnSource;
+                }
             }
 
             if (e.OldItems != null)
-            {                
+            {
                 foreach (WordList list in e.OldItems)
-                    m_engine.Unlearn(list.Words);
+                {
+                    if (list.IsEnabled) UnlearnSource(list);
+                    list.Enabled -= LearnSource;
+                    list.Disabled -= UnlearnSource;
+                }
             }
 
             if (e.Action == NotifyCollectionChangedAction.Reset)
             {
                 m_engine.Clear();
             }
+        }
 
+        void LearnSource(WordList list)
+        {
+            m_engine.Learn(list.Words);
+            if (!string.IsNullOrEmpty(UserEntry))
+                UpdateSuggestedWords();
+        }
+
+        void UnlearnSource(WordList list)
+        {
+            m_engine.Unlearn(list.Words);
             if (!string.IsNullOrEmpty(UserEntry))
                 UpdateSuggestedWords();
         }

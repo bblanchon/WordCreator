@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:WordGenerator"
         xmlns:engine="clr-namespace:WordGenerator.Engine"
-        Title="{StaticResource ApplicationTitle}" Height="350" Width="525">
+        Title="{StaticResource L10n.ApplicationTitle}" Height="350" Width="525">
     <Window.Resources>
         <DataTemplate x:Key="ProbabilityCellTemplate">
             <ProgressBar Value="{Binding ProbabilityPercent, Mode=OneWay}" Width="30" Height="5" Foreground="Red" BorderBrush="{x:Null}" Background="{x:Null}" />
@@ -20,6 +20,9 @@
                     </Style>
                 </Image.Style>
             </Image>
+        </DataTemplate>
+        <DataTemplate x:Key="IsEnabledCellTemplate">
+            <CheckBox IsChecked="{Binding IsEnabled}" />
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -45,15 +48,6 @@
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type my:SuggestedWord}">
                         <StackPanel Orientation="Horizontal">
-                            <StackPanel.Style>
-                                <Style>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsInSources}" Value="True">
-                                            <Setter Property="StackPanel.Background" Value="Orange" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </StackPanel.Style>
                             <TextBlock Text="{Binding Word}" />
                             <TextBlock Margin="5,0,0,0" Text="{Binding ProbabilityPercent, StringFormat='({0:0} %)'}" />
                         </StackPanel>
@@ -70,18 +64,14 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal">                
                 <Image Source="/WordGenerator;component/Images/book.png" />
-                <Label Grid.Row="0">Source d'apprentissage :</Label>
+                <Label Grid.Row="0" Content="{StaticResource L10n.LearningSources}" />
             </StackPanel>
             <ListView Grid.Row="1" ItemsSource="{Binding Sources}" ContextMenuOpening="ListView_ContextMenuOpening">
                 <ListView.View>
                     <GridView>
-                        <!--<GridView.ColumnHeaderContainerStyle>
-                            <Style TargetType="Control">
-                                <Setter Property="Height" Value="0"/>
-                            </Style>
-                        </GridView.ColumnHeaderContainerStyle>-->
-                        <GridViewColumn Width="120" Header="Fichier" DisplayMemberBinding="{Binding FileName}" />
-                        <GridViewColumn Width="120" Header="Nombre de mots" DisplayMemberBinding="{Binding Words.Count}" />
+                        <GridViewColumn Width="30" CellTemplate="{StaticResource IsEnabledCellTemplate}" />
+                        <GridViewColumn Width="120" Header="{StaticResource L10n.FileName}" DisplayMemberBinding="{Binding FileName}" />
+                        <GridViewColumn Width="80" Header="{StaticResource L10n.WordCount}" DisplayMemberBinding="{Binding Words.Count}" />
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>

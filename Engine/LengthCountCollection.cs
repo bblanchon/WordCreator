@@ -26,7 +26,7 @@ namespace WordGenerator.Engine
 
         public double GetProbaOfAtLeast(int length)
         {
-            if (m_cummulatedLengths.ContainsKey(length))
+            if (m_cummulatedLengths.ContainsKey(length) && m_totalCount>0)
                 return (double)m_cummulatedLengths[length] / m_totalCount;
             else
                 return 0;

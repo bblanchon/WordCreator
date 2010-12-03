@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace WordGenerator
 {
@@ -15,6 +16,32 @@ namespace WordGenerator
             if( File.Exists(filePath) ) Load();
             else m_words = new ObservableCollection<string>();
         }
+
+        #region IsEnabled
+
+        private bool m_isEnabled = true;
+
+        public bool IsEnabled
+        {
+            get 
+            { 
+                return m_isEnabled; 
+            }
+            set
+            {
+                var oldValue = m_isEnabled;
+                m_isEnabled = value;
+
+                if (oldValue == false && value == true && Enabled != null) Enabled(this);
+
+                if (oldValue == true && value == false && Disabled != null) Disabled(this);
+            }
+        }
+
+        public event Action<WordList> Disabled;
+        public event Action<WordList> Enabled;
+
+        #endregion
 
         #region FilePath
 
@@ -34,6 +61,8 @@ namespace WordGenerator
 
         #endregion
 
+        #region File load
+
         const int MIN_WORD_LENGTH = 3;
 
         private void Load()
@@ -49,5 +78,7 @@ namespace WordGenerator
         {
             return source.Split(',', ' ', '\t', '\n', '\r', '-', ',', '"', '.', '\'').Select(s => s.ToLower());
         }
+
+        #endregion
     }
 }

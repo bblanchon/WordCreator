@@ -67,7 +67,7 @@ namespace WordGenerator.Engine
             else
                 tail = word;
 
-            if (m_markov.ContainsKey(tail))
+            if (m_markov.ContainsKey(tail) && m_markov[tail].TotalCount > 0 )
             {
                 var coll = m_markov[tail];
                 return coll.OrderByDescending(x => x.Count).Select(x => new CharProbability(x.Char,(double)x.Count/coll.TotalCount));
