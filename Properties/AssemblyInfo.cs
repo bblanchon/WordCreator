@@ -7,12 +7,12 @@ using System.Windows;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("WpfApplication1")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("WordCreator")]
+[assembly: AssemblyDescription("Generate words based on learning dictionnaries")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("WpfApplication1")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2010")]
+[assembly: AssemblyCompany("Benoit Blanchon")]
+[assembly: AssemblyProduct("WordCreator")]
+[assembly: AssemblyCopyright("Copyright © Benoit Blanchon 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

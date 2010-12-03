@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using System.Diagnostics;
 
-namespace WordGenerator
+namespace WordCreator
 {
     public class RelayCommand : ICommand
     {

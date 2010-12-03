@@ -12,10 +12,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-using WordGenerator.Engine;
+using WordCreator.Engine;
 using System.Collections.ObjectModel;
 
-namespace WordGenerator
+namespace WordCreator
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml

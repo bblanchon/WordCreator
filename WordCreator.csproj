@@ -8,8 +8,8 @@
     <ProjectGuid>{81921297-9237-4E3E-8C6D-41BD31E9CBAB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WordGenerator</RootNamespace>
-    <AssemblyName>WordGenerator</AssemblyName>
+    <RootNamespace>WordCreator</RootNamespace>
+    <AssemblyName>WordCreator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

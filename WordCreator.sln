@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordGenerator", "WordGenerator.csproj", "{81921297-9237-4E3E-8C6D-41BD31E9CBAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordCreator", "WordCreator.csproj", "{81921297-9237-4E3E-8C6D-41BD31E9CBAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

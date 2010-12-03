@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
-using WordGenerator.Engine;
+using WordCreator.Engine;
 using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
 using System.IO;
 using System.Collections.Specialized;
 
-namespace WordGenerator
+namespace WordCreator
 {
     class MainWindowViewModel : INotifyPropertyChanged, IDisposable
     {

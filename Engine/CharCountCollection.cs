@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WordGenerator.Engine
+namespace WordCreator.Engine
 {
     class CharCountCollection : IEnumerable<CharCount>
     {

@@ -1,8 +1,8 @@
-﻿<Window x:Class="WordGenerator.MainWindow"
+﻿<Window x:Class="WordCreator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:my="clr-namespace:WordGenerator"
-        xmlns:engine="clr-namespace:WordGenerator.Engine"
+        xmlns:my="clr-namespace:WordCreator"
+        xmlns:engine="clr-namespace:WordCreator.Engine"
         Title="{StaticResource L10n.ApplicationTitle}" Height="350" Width="525">
     <Window.Resources>
         <DataTemplate x:Key="ProbabilityCellTemplate">

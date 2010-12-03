@@ -6,7 +6,7 @@ using System.IO;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace WordGenerator
+namespace WordCreator
 {
     class WordList
     {
