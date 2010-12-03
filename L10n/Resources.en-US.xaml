@@ -2,7 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="L10n.ApplicationTitle">Word creator</sys:String>
+
+    <sys:String x:Key="L10n.EnterBeginningBellow">Enter the beginning of you word bellow</sys:String>
+    <sys:String x:Key="L10n.SuggestedWords">Suggested words</sys:String>
+
+    <sys:String x:Key="L10n.LearningSources">Learning sources</sys:String>
     <sys:String x:Key="L10n.FileName">File name</sys:String>
     <sys:String x:Key="L10n.WordCount">Word count</sys:String>
-    <sys:String x:Key="L10n.LearningSources">Learning sources</sys:String>
+    <sys:String x:Key="L10n.AddSource">Add source(s)...</sys:String>
+    <sys:String x:Key="L10n.RemoveSource">Remove source(s)...</sys:String>
+
+    <sys:String x:Key="L10n.MyWords">My words</sys:String>
 </ResourceDictionary>

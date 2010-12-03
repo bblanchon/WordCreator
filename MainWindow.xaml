@@ -30,9 +30,23 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Column="0">
-            <TextBox DockPanel.Dock="Top" Text="{Binding UserEntry, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
-            <ListView ItemsSource="{Binding SuggestedWords}">
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Image Source="/WordGenerator;component/Images/textfield.png" />
+                <Label Content="{StaticResource L10n.EnterBeginningBellow}"/>
+            </StackPanel>
+            <TextBox Grid.Row="1" Text="{Binding UserEntry, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Image Source="/WordGenerator;component/Images/lightbulb.png" />
+                <Label Content="{StaticResource L10n.SuggestedWords}"/>
+            </StackPanel>
+            <ListView Grid.Row="3" ItemsSource="{Binding SuggestedWords}">
                 <ListView.View>
                     <GridView>
                         <GridView.ColumnHeaderContainerStyle>
@@ -54,7 +68,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </DockPanel>
+        </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -62,9 +76,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">                
+            <StackPanel Grid.Row="0" Orientation="Horizontal">                
                 <Image Source="/WordGenerator;component/Images/book.png" />
-                <Label Grid.Row="0" Content="{StaticResource L10n.LearningSources}" />
+                <Label Content="{StaticResource L10n.LearningSources}" />
             </StackPanel>
             <ListView Grid.Row="1" ItemsSource="{Binding Sources}" ContextMenuOpening="ListView_ContextMenuOpening">
                 <ListView.View>
@@ -76,12 +90,15 @@
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Ajouter une source..." Command="{Binding AddSourceCommand}" />
-                        <MenuItem Header="Enlever la source..." Command="{Binding RemoveSourceCommand}" x:Name="removeSourceMenuItem"/>
+                        <MenuItem Header="{StaticResource L10n.AddSource}" Command="{Binding AddSourceCommand}" />
+                        <MenuItem Header="{StaticResource L10n.RemoveSource}" Command="{Binding RemoveSourceCommand}" x:Name="removeSourceMenuItem"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
-            </ListView>            
-            <Label Grid.Row="2">Mes mots :</Label>
+            </ListView>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Image Source="/WordGenerator;component/Images/page_white_text.png" />
+                <Label Content="{StaticResource L10n.MyWords}" />
+            </StackPanel>
             <ListView Grid.Row="3" ItemsSource="{Binding UserWords}"/>
         </Grid>
     </Grid>    
