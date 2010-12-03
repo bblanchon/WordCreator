@@ -61,6 +61,7 @@ namespace WordCreator
         {
             var list = (ListView)sender;
 
+            removeSelectedWordsMenuItem.CommandParameter = list.SelectedItems.Cast<string>().ToArray();
         }
     }
 }

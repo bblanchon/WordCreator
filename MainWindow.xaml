@@ -134,6 +134,9 @@
                                 <Image Source="/WordCreator;component/Images/paste_plain.png" />
                             </MenuItem.Icon>
                         </MenuItem>
+                        <MenuItem Header="{StaticResource L10n.RemoveSelectedWords}"
+                                  Command="{Binding RemoveUserWordsCommand}"
+                                  x:Name="removeSelectedWordsMenuItem"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>

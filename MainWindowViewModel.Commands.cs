@@ -18,6 +18,7 @@ namespace WordCreator
             AddUserWordCommand = new RelayCommand(AddUserWordExecuted);
             RemoveUserWordCommand = new RelayCommand(RemoveUserWordExecuted);
             CopyUserWordsCommand = new RelayCommand(CopyUserWordsExecuted, CopyUserWordsCanExecute);
+            RemoveUserWordsCommand = new RelayCommand(RemoveUserWordsExecuted, RemoveUserWordsCanExecute);
         }
         
         #region Add source
@@ -104,6 +105,25 @@ namespace WordCreator
         private void CopyUserWordsExecuted(object parameter)
         {
             Clipboard.SetData(DataFormats.Text, string.Join(Environment.NewLine, UserWords.Words));
+        }
+
+        #endregion
+
+        #region Remove user words
+
+        public ICommand RemoveUserWordsCommand { private set; get; }
+
+        private bool RemoveUserWordsCanExecute(object parameter)
+        {
+            var list = parameter as IEnumerable<string>;
+            return list != null && list.Any();
+        }
+
+        private void RemoveUserWordsExecuted(object parameter)
+        {
+            var list = parameter as IEnumerable<string>;
+            foreach (var word in list)
+                UserWords.Words.Remove(word);
         }
 
         #endregion
