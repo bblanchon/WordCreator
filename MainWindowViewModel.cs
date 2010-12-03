@@ -1,25 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Collections.ObjectModel;
 using WordCreator.Engine;
 using System.ComponentModel;
-using System.Windows.Input;
-using Microsoft.Win32;
 using System.IO;
 using System.Collections.Specialized;
 
 namespace WordCreator
 {
-    class MainWindowViewModel : INotifyPropertyChanged, IDisposable
+    partial class MainWindowViewModel : INotifyPropertyChanged, IDisposable
     {
         public MainWindowViewModel()
         {
-            AddSourceCommand = new RelayCommand(AddSourceCmdExecuted);
-            RemoveSourceCommand = new RelayCommand(RemoveSourceCmdExecuted);
-            AddUserWordCommand = new RelayCommand(AddUserWordExecuted);
-            RemoveUserWordCommand = new RelayCommand(RemoveUserWordExecuted);
+            BuildCommands();
 
             Sources = new ObservableCollection<WordList>();
             Sources.CollectionChanged += OnSourcesCollectionChanged;
@@ -126,82 +120,6 @@ namespace WordCreator
         {
             UpdateSuggestedWords();
         }
-
-        #endregion
-
-        #region Commands
-
-        #region Add source
-
-        public ICommand AddSourceCommand { private set; get; }
-
-        private void AddSourceCmdExecuted(object parameter)
-        {
-            var dlg = new OpenFileDialog();
-            dlg.CheckFileExists = true;
-            dlg.Multiselect = true;
-
-            if (dlg.ShowDialog() == true)
-            {
-                foreach (var file in dlg.FileNames)
-                {
-                    var dstFile = Path.Combine(SourceFilesFolder, Path.GetFileName(file));
-                    File.Copy(file, dstFile);
-                    Sources.Add(new WordList(dstFile));
-                }
-            }
-        }
-
-        #endregion
-
-        #region Remove source
-
-        public ICommand RemoveSourceCommand { private set; get; }
-        
-        private void RemoveSourceCmdExecuted(object parameter)
-        {
-            var selection = parameter as IEnumerable<WordList>;
-
-            foreach( WordList list in selection )
-            {
-                File.Delete(list.FilePath);
-                Sources.Remove (list);
-            }
-        }
-
-        #endregion
-
-        #region Add to user words
-
-        public ICommand AddUserWordCommand { private set; get; }
-
-        private void AddUserWordExecuted(object parameter)
-        {
-            var word = parameter as string;
-
-            UserWords.Words.Add(word);
-            m_engine.Learn(word);
-
-            UpdateSuggestedWords();
-        }
-
-        #endregion
-
-        #region Remove user word
-
-        public ICommand RemoveUserWordCommand { private set; get; }
-
-        private void RemoveUserWordExecuted(object parameter)
-        {
-            var word = parameter as string;
-
-            UserWords.Words.Remove(word);
-            m_engine.Unlearn(word);
-
-            UpdateSuggestedWords();
-        }
-
-        #endregion
 
         #endregion
 

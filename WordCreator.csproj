@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindowViewModel.Commands.cs" />
     <Compile Include="RelayCommand.cs" />
     <Page Include="L10n\Resources.fr-FR.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +137,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\lightbulb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\paste_plain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\book_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\book_delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

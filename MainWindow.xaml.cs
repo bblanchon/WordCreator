@@ -41,7 +41,7 @@ namespace WordCreator
 
         MainWindowViewModel m_data;
 
-        private void ListView_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        private void HandleSourcesContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             var list = (ListView)sender;
 
@@ -55,6 +55,12 @@ namespace WordCreator
 
             if (word.IsInUserWords) m_data.RemoveUserWordCommand.Execute(word.Word);
             else m_data.AddUserWordCommand.Execute(word.Word);
+        }
+
+        private void HandleUserWordsContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            var list = (ListView)sender;
+
         }
     }
 }

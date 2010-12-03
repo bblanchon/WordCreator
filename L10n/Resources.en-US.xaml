@@ -13,4 +13,5 @@
     <sys:String x:Key="L10n.RemoveSource">Remove source(s)...</sys:String>
 
     <sys:String x:Key="L10n.MyWords">My words</sys:String>
+    <sys:String x:Key="L10n.CopyMyWordsToClipboard">Copy my words to clipboard</sys:String>
 </ResourceDictionary>
