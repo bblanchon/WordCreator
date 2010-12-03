@@ -18,12 +18,15 @@ namespace WordGenerator
         {
             AddSourceCommand = new RelayCommand(AddSourceCmdExecuted);
             RemoveSourceCommand = new RelayCommand(RemoveSourceCmdExecuted);
+            AddUserWordCommand = new RelayCommand(AddUserWordExecuted);
+            RemoveUserWordCommand = new RelayCommand(RemoveUserWordExecuted);
 
             Sources = new ObservableCollection<WordList>();
             Sources.CollectionChanged += OnSourcesCollectionChanged;
 
             FindFiles();
 
+            UserWords = new WordList(UserWordsFile);
             m_engine.Learn(UserWords.Words);
         }
 
@@ -62,20 +65,18 @@ namespace WordGenerator
         void LearnSource(WordList list)
         {
             m_engine.Learn(list.Words);
-            if (!string.IsNullOrEmpty(UserEntry))
-                UpdateSuggestedWords();
+            UpdateSuggestedWords();
         }
 
         void UnlearnSource(WordList list)
         {
             m_engine.Unlearn(list.Words);
-            if (!string.IsNullOrEmpty(UserEntry))
-                UpdateSuggestedWords();
+            UpdateSuggestedWords();
         }
 
         #endregion
 
-        public WordList UserWords;
+        public WordList UserWords { private set; get; }
 
         #region SuggestedWords
 
@@ -89,10 +90,13 @@ namespace WordGenerator
 
         private void UpdateSuggestedWords()
         {
+            if (string.IsNullOrEmpty(UserEntry)) return;
+
             var words = m_engine.Suggest(UserEntry).Where(x => x.String.Length > 2).Take(300);
 
             SuggestedWords = words.Select(wp => new SuggestedWord(wp.String, wp.Probability,
-                Sources.Any(src => src.Words.Contains(wp.String))));
+                Sources.Any(src => src.Words.Contains(wp.String)),
+                UserWords.Words.Contains(wp.String)));
         }
 
         #endregion
@@ -122,9 +126,9 @@ namespace WordGenerator
 
         #region Commands
 
-        public ICommand AddSourceCommand { private set; get; }
+        #region Add source
 
-        public ICommand RemoveSourceCommand { private set; get; }
+        public ICommand AddSourceCommand { private set; get; }
 
         private void AddSourceCmdExecuted(object parameter)
         {
@@ -143,6 +147,12 @@ namespace WordGenerator
             }
         }
 
+        #endregion
+
+        #region Remove source
+
+        public ICommand RemoveSourceCommand { private set; get; }
+        
         private void RemoveSourceCmdExecuted(object parameter)
         {
             var selection = parameter as IEnumerable<WordList>;
@@ -153,6 +163,40 @@ namespace WordGenerator
                 Sources.Remove (list);
             }
         }
+
+        #endregion
+
+        #region Add to user words
+
+        public ICommand AddUserWordCommand { private set; get; }
+
+        private void AddUserWordExecuted(object parameter)
+        {
+            var word = parameter as string;
+
+            UserWords.Words.Add(word);
+            m_engine.Learn(word);
+
+            UpdateSuggestedWords();
+        }
+
+        #endregion
+
+        #region Remove user word
+
+        public ICommand RemoveUserWordCommand { private set; get; }
+
+        private void RemoveUserWordExecuted(object parameter)
+        {
+            var word = parameter as string;
+
+            UserWords.Words.Remove(word);
+            m_engine.Unlearn(word);
+
+            UpdateSuggestedWords();
+        }
+
+        #endregion
 
         #endregion
 
@@ -181,8 +225,6 @@ namespace WordGenerator
 
         private void FindFiles()
         {
-            UserWords = new WordList(UserWordsFile);
-
             if (Directory.Exists(SourceFilesFolder))
             {
                 var files = Directory.EnumerateFiles(SourceFilesFolder, "*.txt");

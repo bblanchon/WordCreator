@@ -40,5 +40,13 @@ namespace WordGenerator
             removeSourceMenuItem.Visibility = list.SelectedItems.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
             removeSourceMenuItem.CommandParameter = list.SelectedItems.Cast<WordList>().ToArray();
         }
+
+        private void HandleSuggestedWordDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var word = ((ListViewItem)sender).Content as SuggestedWord;
+
+            if (word.IsInUserWords) m_data.RemoveUserWordCommand.Execute(word.Word);
+            else m_data.AddUserWordCommand.Execute(word.Word);
+        }
     }
 }

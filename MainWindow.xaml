@@ -21,6 +21,19 @@
                 </Image.Style>
             </Image>
         </DataTemplate>
+        <DataTemplate x:Key="IsInUserWordsCellTemplate">
+            <Image Source="/WordGenerator;component/Images/page_white_text.png" Stretch="None">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsInUserWords}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </DataTemplate>
         <DataTemplate x:Key="IsEnabledCellTemplate">
             <CheckBox IsChecked="{Binding IsEnabled}" />
         </DataTemplate>
@@ -57,6 +70,7 @@
                         <GridViewColumn Width="120" Header="Mot" DisplayMemberBinding="{Binding Word}" />
                         <GridViewColumn Width="50" Header="Correspondance" CellTemplate="{StaticResource ProbabilityCellTemplate}"/>
                         <GridViewColumn Width="30" Header="Dans les sources" CellTemplate="{StaticResource IsInSourcesCellTemplate}"/>
+                        <GridViewColumn Width="30" Header="Dans mes mots" CellTemplate="{StaticResource IsInUserWordsCellTemplate}"/>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemTemplate>
@@ -67,6 +81,11 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <EventSetter Event="MouseDoubleClick" Handler="HandleSuggestedWordDoubleClick" />
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
         </Grid>
         <Grid Grid.Column="1">
@@ -99,7 +118,7 @@
                 <Image Source="/WordGenerator;component/Images/page_white_text.png" />
                 <Label Content="{StaticResource L10n.MyWords}" />
             </StackPanel>
-            <ListView Grid.Row="3" ItemsSource="{Binding UserWords}"/>
+            <ListView Grid.Row="3" ItemsSource="{Binding UserWords.Words}"/>
         </Grid>
     </Grid>    
 </Window>

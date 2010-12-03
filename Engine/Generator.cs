@@ -42,14 +42,24 @@ namespace WordGenerator.Engine
             Learn(word, Math.Min(orderMax, word.Length), increment);
         }
 
+        public void Learn(string word)
+        {
+            Learn(word, +1);
+        }
+
         public void Learn(IEnumerable<string> list)
         {
-            foreach (var word in list) Learn(word, +1);
+            foreach (var word in list) Learn(word);
+        }
+
+        public void Unlearn(string word)
+        {
+            Learn(word, -1);
         }
 
         public void Unlearn(IEnumerable<string> list)
         {
-            foreach (var word in list) Learn(word, -1);
+            foreach (var word in list) Unlearn(word);
         }
 
         public void Clear()
