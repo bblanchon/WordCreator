@@ -116,17 +116,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sources\attentats.txt" />
-    <None Include="Sources\chine.txt" />
-    <None Include="Sources\eleveur.txt" />
-    <None Include="Sources\foot.txt" />
-    <None Include="Sources\fos-sur-mer.txt" />
-    <None Include="Sources\fuite.txt" />
-    <None Include="Sources\immi.txt" />
-    <None Include="Sources\roms.txt" />
-    <None Include="Sources\russelcup.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Sources\bella_jones.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +141,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="WordCreator.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sources\Greek_alphabet.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sources\Fleurs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sources\Fruits.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sources\Constellations %28latin%29.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sources\Constellations %28Français%29.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

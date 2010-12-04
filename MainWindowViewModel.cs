@@ -127,7 +127,7 @@ namespace WordCreator
 
         public string BaseFolder
         {
-            get { return System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WordGenerator"); }
+            get { return System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WordCreator"); }
         }
 
         public string UserWordsFile
