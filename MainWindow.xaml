@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:WordCreator"
         xmlns:engine="clr-namespace:WordCreator.Engine"
-        Title="{StaticResource L10n.ApplicationTitle}" Height="350" Width="525">
+        Title="{StaticResource L10n.ApplicationTitle}" Height="500" Width="600" Icon="/WordCreator;component/WordCreator.ico">
     <Window.Resources>
         <DataTemplate x:Key="ProbabilityCellTemplate">
             <ProgressBar Value="{Binding ProbabilityPercent, Mode=OneWay}" Width="30" Height="5" Foreground="Red" BorderBrush="{x:Null}" Background="{x:Null}" />
