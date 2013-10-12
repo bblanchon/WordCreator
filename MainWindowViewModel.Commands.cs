@@ -33,6 +33,8 @@ namespace WordCreator
 
             if (dlg.ShowDialog() == true)
             {
+                Directory.CreateDirectory(SourceFilesFolder);
+
                 foreach (var file in dlg.FileNames)
                 {
                     var dstFile = Path.Combine(SourceFilesFolder, Path.GetFileName(file));
