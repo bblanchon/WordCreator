@@ -38,7 +38,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "bin\Release\WordCreator.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: main;
-Source: "Sources\*.txt"; DestDir: "{userappdata}\WordGenerator\Sources"; Flags: ignoreversion; Components:examples;
+Source: "Sources\*.txt"; DestDir: "{userappdata}\WordCreator\Sources"; Flags: ignoreversion; Components:examples;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
