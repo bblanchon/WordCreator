@@ -83,6 +83,8 @@ namespace WordCreator
 
         public void Save()
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(m_filePath));
+
             using (var writer = File.CreateText(m_filePath))
             {
                 foreach (var word in m_words)
