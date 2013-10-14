@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:WordCreator"
         xmlns:engine="clr-namespace:WordCreator.Engine"
-        Title="{StaticResource L10n.ApplicationTitle}" Height="500" Width="600" Icon="/WordCreator;component/WordCreator.ico">
+        Title="{StaticResource L10n.ApplicationTitle}" Height="500" Width="600" Icon="WordCreator.ico">
     <Window.Resources>
         <DataTemplate x:Key="ProbabilityCellTemplate">
             <ProgressBar Value="{Binding ProbabilityPercent, Mode=OneWay}" Width="30" Height="5" Foreground="Red" BorderBrush="{x:Null}" Background="{x:Null}" />
         </DataTemplate>
         <DataTemplate x:Key="IsInSourcesCellTemplate">
-            <Image Source="/WordGenerator;component/Images/book.png" Stretch="None">
+            <Image Source="Images/book.png" Stretch="None">
                 <Image.Style>
                     <Style TargetType="Image">
                         <Style.Triggers>
@@ -22,7 +22,7 @@
             </Image>
         </DataTemplate>
         <DataTemplate x:Key="IsInUserWordsCellTemplate">
-            <Image Source="/WordGenerator;component/Images/page_white_text.png" Stretch="None">
+            <Image Source="Images/page_white_text.png" Stretch="None">
                 <Image.Style>
                     <Style TargetType="Image">
                         <Style.Triggers>
@@ -51,12 +51,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Image Source="/WordGenerator;component/Images/textfield.png" />
+                <Image Source="Images/textfield.png" />
                 <Label Content="{StaticResource L10n.EnterBeginningBellow}"/>
             </StackPanel>
             <TextBox Grid.Row="1" Text="{Binding UserEntry, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <Image Source="/WordGenerator;component/Images/lightbulb.png" />
+                <Image Source="Images/lightbulb.png" />
                 <Label Content="{StaticResource L10n.SuggestedWords}"/>
             </StackPanel>
             <ListView Grid.Row="3" ItemsSource="{Binding SuggestedWords}">
@@ -96,8 +96,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Image Source="/WordGenerator;component/Images/book.png" />
-                <Label Content="{StaticResource L10n.LearningSources}" />
+                <Image Source="Images/book.png" />
+                <Label Content="{StaticResource L10n.LearningSources}" />                
             </StackPanel>
             <ListView Grid.Row="1" ItemsSource="{Binding Sources}" ContextMenuOpening="HandleSourcesContextMenuOpening">
                 <ListView.View>
@@ -111,19 +111,19 @@
                     <ContextMenu>
                         <MenuItem Header="{StaticResource L10n.AddSource}" Command="{Binding AddSourceCommand}">
                             <MenuItem.Icon>
-                                <Image Source="/WordCreator;component/Images/book_add.png" />
+                                <Image Source="Images/book_add.png" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="{StaticResource L10n.RemoveSource}" Command="{Binding RemoveSourceCommand}" x:Name="removeSourceMenuItem">
                             <MenuItem.Icon>
-                                <Image Source="/WordCreator;component/Images/book_delete.png" />
+                                <Image Source="Images/book_delete.png" />
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>
             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <Image Source="/WordGenerator;component/Images/page_white_text.png" />
+                <Image Source="Images/page_white_text.png" />
                 <Label Content="{StaticResource L10n.MyWords}" />
             </StackPanel>
             <ListView Grid.Row="3" ItemsSource="{Binding UserWords.Words}" ContextMenuOpening="HandleUserWordsContextMenuOpening">
@@ -131,7 +131,7 @@
                     <ContextMenu>
                         <MenuItem Header="{StaticResource L10n.CopyMyWordsToClipboard}" Command="{Binding CopyUserWordsCommand}">
                             <MenuItem.Icon>
-                                <Image Source="/WordCreator;component/Images/paste_plain.png" />
+                                <Image Source="Images/paste_plain.png" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="{StaticResource L10n.RemoveSelectedWords}"
