@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="L10n.ApplicationTitle">Word creator</sys:String>
 
-    <sys:String x:Key="L10n.EnterBeginningBellow">Enter the beginning of you word bellow</sys:String>
+    <sys:String x:Key="L10n.EnterBeginningBellow">Enter the beginning of your word bellow</sys:String>
     <sys:String x:Key="L10n.SuggestedWords">Suggested words</sys:String>
 
     <sys:String x:Key="L10n.LearningSources">Learning sources</sys:String>
