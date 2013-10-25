@@ -18,21 +18,25 @@ namespace WordCreator
         }
 
 
-        ResourceDictionary GetL10nResources()
+        void LoadL10nResources()
         {
-            return new ResourceDictionary()
-            {
-                Source = new Uri(string.Format("pack://application:,,,/L10n/Resources.{0}.xaml", System.Threading.Thread.CurrentThread.CurrentUICulture))
-            };
-            
+            var uri = new Uri(string.Format("pack://application:,,,/L10n/Resources.{0}.xaml", System.Threading.Thread.CurrentThread.CurrentUICulture));
+            var dictionary = new ResourceDictionary { Source = uri };
+            this.Resources.MergedDictionaries.Add(dictionary);            
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            //this.Resources.MergedDictionaries.Clear();
-            this.Resources.MergedDictionaries.Add(GetL10nResources());
+            try
+            {
+                LoadL10nResources();
+            }
+            catch
+            {
+                // go chance that the resources doesn't exist
+            }
         }
     }
 }
