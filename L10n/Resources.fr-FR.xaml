@@ -1,5 +1,18 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <sys:String x:Key="L10n.ApplicationTitle">Créateur de mots</sys:String>    
+    <sys:String x:Key="L10n.ApplicationTitle">Créateur de mots</sys:String>
+
+    <sys:String x:Key="L10n.EnterBeginningBellow">Entrez le début de votre mot ci-dessous</sys:String>
+    <sys:String x:Key="L10n.SuggestedWords">Suggestions de mots</sys:String>
+
+    <sys:String x:Key="L10n.LearningSources">Sources d'apprentissage</sys:String>
+    <sys:String x:Key="L10n.FileName">Nom de fichier</sys:String>
+    <sys:String x:Key="L10n.WordCount">Nombre de mots</sys:String>
+    <sys:String x:Key="L10n.AddSource">Ajouter des sources...</sys:String>
+    <sys:String x:Key="L10n.RemoveSource">Retirer des sources...</sys:String>
+
+    <sys:String x:Key="L10n.MyWords">Mes mots</sys:String>
+    <sys:String x:Key="L10n.RemoveSelectedWords">Retirer les mots selectionnés</sys:String>
+    <sys:String x:Key="L10n.CopyMyWordsToClipboard">Copier mes mots vers le presse-papier</sys:String>
 </ResourceDictionary>
